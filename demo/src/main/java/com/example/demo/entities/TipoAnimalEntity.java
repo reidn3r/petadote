@@ -32,4 +32,9 @@ public class TipoAnimalEntity {
 
     @OneToMany(mappedBy = "tipoAnimal")
     private List<AnimalEntity> animal;
+
+    public TipoAnimalEntity(String raca, String tipo){
+        this.raca = raca;
+        this.tipo = tipo;
+    }
 }

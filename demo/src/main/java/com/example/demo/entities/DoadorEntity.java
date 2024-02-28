@@ -34,6 +34,16 @@ public class DoadorEntity {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column(nullable = true)
+    private String email;
+
     @OneToMany(mappedBy = "doador")
     private List<AnimalEntity> animal;
+
+    public DoadorEntity(String nome, String telefone, String cpf, String email){
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.email = email;
+    }
 }

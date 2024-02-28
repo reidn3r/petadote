@@ -26,13 +26,13 @@ public class AnimalEntity {
     @Column(nullable = false)
     private String nome;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int idade;
     
     @Column(nullable = false)
     private String cor;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String descricao;
     
     @Column(nullable = false)
@@ -45,5 +45,15 @@ public class AnimalEntity {
     @ManyToOne
     @JoinColumn(name="doador_id")
     private DoadorEntity doador;
+
+    public AnimalEntity(String nome, String cor, int idade, String descricao, TipoAnimalEntity tipo, DoadorEntity doador){
+        this.nome = nome;
+        this.cor = cor;
+        this.idade = idade;
+        this.status = "DISPONIVEL";
+        this.descricao = descricao;
+        this.tipoAnimal = tipo;
+        this.doador = doador;
+    }
 }
 
