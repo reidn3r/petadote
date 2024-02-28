@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  pg_petadote:
+    container_name: 'postgresql_petadote'
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_DATABASE=pg_petadote
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=root
+    volumes:
+      - 'data:/bitnami/postgresql'
+
+volumes:
+  data:
+    driver: local
