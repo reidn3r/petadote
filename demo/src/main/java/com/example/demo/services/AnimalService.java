@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CreateAnimalDoadorDTO;import com.example.demo.entities.AnimalEntity;
@@ -14,6 +12,7 @@ import com.example.demo.entities.TipoAnimalEntity;
 import com.example.demo.repository.AnimalRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.NonNull;
 
 @Service
 public class AnimalService {
@@ -119,5 +118,9 @@ public class AnimalService {
     public Optional<AnimalEntity> findAnimalById(Long id){
         //Encontra um unico animal por ID (chave primária da entidade) do banco de dados
         return animalRepository.findById(id);
+    }
+
+    public void deleteAnimalById(Optional<AnimalEntity> animal){
+        animalRepository.delete(animal.get());
     }
 }
