@@ -1,4 +1,6 @@
 package com.example.demo.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,10 +42,12 @@ public class AnimalEntity {
     
     @ManyToOne
     @JoinColumn(name="tipo_animal_id")
+    @JsonIgnore
     private TipoAnimalEntity tipoAnimal;
-
+    
     @ManyToOne
     @JoinColumn(name="doador_id")
+    @JsonIgnore
     private DoadorEntity doador;
 
     public AnimalEntity(String nome, String cor, int idade, String descricao, TipoAnimalEntity tipo, DoadorEntity doador){

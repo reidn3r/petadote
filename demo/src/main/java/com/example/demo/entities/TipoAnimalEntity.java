@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class TipoAnimalEntity {
     private String tipo;
 
     @OneToMany(mappedBy = "tipoAnimal")
+    @JsonIgnore
     private List<AnimalEntity> animal;
 
     public TipoAnimalEntity(String raca, String tipo){

@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +18,12 @@ import com.example.demo.services.DoadorService;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@RequestMapping("/api/new")
+@RequestMapping("/api")
 public class PetAdoteController {
 
     @Autowired
@@ -31,8 +32,13 @@ public class PetAdoteController {
     @Autowired
     private AnimalService animalService;
 
-    @PostMapping("/animal")
-    public ResponseEntity<Object> createAnimal(@RequestBody @Valid CreateAnimalDoadorDTO data){
+    @GetMapping("/get/all")
+    public ResponseEntity<List<AnimalEntity>> getAllAnimals(){
+        return ResponseEntity.status(HttpStatus.OK).body(this.animalService.findAllAnimals());
+    }
+
+    @PostMapping("new/animal")
+    public ResponseEntity<AnimalEntity> createAnimal(@RequestBody @Valid CreateAnimalDoadorDTO data){
         Optional<DoadorEntity> foundDoador = this.doadorService.findDoadorByCpf(data.cpf());
         if(foundDoador.isPresent()){
             //cria animal sem criar novo doador

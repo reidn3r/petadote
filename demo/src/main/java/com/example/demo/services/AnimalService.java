@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +87,7 @@ public class AnimalService {
         return this.createNewAnimal(newAnimal);
     }
 
-
+    @Transactional
     public AnimalEntity createNewAnimalAndDoadorAndTipo(CreateAnimalDoadorDTO data){
         //Cria novo doador, tipo_animal e animal e associa todo mundo
         DoadorEntity newDoador = new DoadorEntity(data.nome_doador(), data.telefone(), data.cpf(), data.email());
@@ -99,5 +100,9 @@ public class AnimalService {
         data.descricao(), newTipo, createdDoador);
     
         return this.createNewAnimal(newAnimal);
+    }
+
+    public List<AnimalEntity> findAllAnimals(){
+        return this.animalRepository.findAll();
     }
 }
