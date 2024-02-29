@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CreateAnimalDoadorDTO;import com.example.demo.entities.AnimalEntity;
@@ -57,9 +59,16 @@ public class AnimalService {
             return this.createNewAnimalAndDoadorAndTipo(data);
         }
     }
+
+    public AnimalEntity adoptAnimal(AnimalEntity animal){
+        //Troca o status do animal p/ adotado
+        animal.setStatus("ADOTADO");
+        return animalRepository.save(animal);
+    }
     
     
     private AnimalEntity createNewAnimal(AnimalEntity animal){
+        //Cria novo animal no bd
         return animalRepository.save(animal);
     }
 
@@ -103,6 +112,12 @@ public class AnimalService {
     }
 
     public List<AnimalEntity> findAllAnimals(){
+        //Lista todos os animais
         return this.animalRepository.findAll();
+    }
+    
+    public Optional<AnimalEntity> findAnimalById(Long id){
+        //Encontra um unico animal por ID (chave primária da entidade) do banco de dados
+        return animalRepository.findById(id);
     }
 }
