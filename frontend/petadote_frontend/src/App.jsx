@@ -1,7 +1,9 @@
+import HomeComponent from "./components/HomeComponent"
+
 function App() {
   return (
     <>
-    <h1 className="title">petadote</h1>
+    <HomeComponent />
     </>
   )
 }
