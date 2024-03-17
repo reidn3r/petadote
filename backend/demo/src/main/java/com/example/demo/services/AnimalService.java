@@ -33,7 +33,7 @@ public class AnimalService {
         //Se o tipo_animal for existente no bd:
         if(foundTipo.isPresent()){
             AnimalEntity newAnimal = new AnimalEntity(data.nome_animal(), data.cor(), data.idade(),
-            data.descricao(), foundTipo.get(), doador);
+            data.descricao(), data.sexo(), foundTipo.get(), doador);
 
             return this.createNewAnimal(newAnimal);
         }
@@ -78,7 +78,7 @@ public class AnimalService {
         TipoAnimalEntity newTipo = tipoAnimalService.createNewTipo(tipo);
         
         AnimalEntity newAnimal = new AnimalEntity(data.nome_animal(), data.cor(), data.idade(),
-        data.descricao(), newTipo, doador);
+        data.descricao(), data.sexo(), newTipo, doador);
 
         return this.createNewAnimal(newAnimal);
     }
@@ -90,7 +90,7 @@ public class AnimalService {
         DoadorEntity createdDoador = doadorService.createNewDoador(newDoador);
         
         AnimalEntity newAnimal = new AnimalEntity(data.nome_animal(), data.cor(), data.idade(),
-        data.descricao(), tipo, createdDoador);
+        data.descricao(), data.sexo(), tipo, createdDoador);
         
         return this.createNewAnimal(newAnimal);
     }
@@ -105,7 +105,7 @@ public class AnimalService {
         TipoAnimalEntity newTipo = tipoAnimalService.createNewTipo(tipo);
         
         AnimalEntity newAnimal = new AnimalEntity(data.nome_animal(), data.cor(), data.idade(),
-        data.descricao(), newTipo, createdDoador);
+        data.descricao(), data.sexo(), newTipo, createdDoador);
     
         return this.createNewAnimal(newAnimal);
     }

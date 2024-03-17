@@ -10,10 +10,11 @@ public record CreateAnimalDoadorDTO(
     @NotBlank String raca,
     @NotBlank String tipo_animal,
 
-    @NotBlank String nome_animal,
-    @NotBlank String cor,
+    @NotBlank @NotNull String nome_animal,
+    @NotBlank @NotNull String cor,
     int idade,
     String descricao,
+    @NotBlank @NotNull String sexo,
 
     @NotNull String nome_doador,
     @NotNull String telefone,

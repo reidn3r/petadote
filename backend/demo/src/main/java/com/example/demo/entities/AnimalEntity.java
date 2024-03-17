@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") //obg gpt
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class AnimalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,16 +42,21 @@ public class AnimalEntity {
     
     @Column(nullable = false)
     private String status;
+
+    @Column(nullable = false)
+    private String sexo;
     
     @ManyToOne
     @JoinColumn(name="tipo_animal_id")
+    @JsonIgnore
     private TipoAnimalEntity tipoAnimal;
     
     @ManyToOne
     @JoinColumn(name="doador_id")
+    @JsonIgnore
     private DoadorEntity doador;
 
-    public AnimalEntity(String nome, String cor, int idade, String descricao, TipoAnimalEntity tipo, DoadorEntity doador){
+    public AnimalEntity(String nome, String cor, int idade, String descricao, String sexo, TipoAnimalEntity tipo, DoadorEntity doador){
         this.nome = nome;
         this.cor = cor;
         this.idade = idade;
@@ -58,6 +64,7 @@ public class AnimalEntity {
         this.descricao = descricao;
         this.tipoAnimal = tipo;
         this.doador = doador;
+        this.sexo = sexo;
     }
 }
 
