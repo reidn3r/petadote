@@ -48,12 +48,10 @@ public class AnimalEntity {
     
     @ManyToOne
     @JoinColumn(name="tipo_animal_id")
-    @JsonIgnore
     private TipoAnimalEntity tipoAnimal;
     
     @ManyToOne
     @JoinColumn(name="doador_id")
-    @JsonIgnore
     private DoadorEntity doador;
 
     public AnimalEntity(String nome, String cor, int idade, String descricao, String sexo, TipoAnimalEntity tipo, DoadorEntity doador){
