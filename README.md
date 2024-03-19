@@ -30,12 +30,12 @@ $ git clone https://github.com/reidn3r/petadote
 $ cd petadote/backend
 
 #Opção 1:
-  # Build dos container's
+  # Build do container do PostgreSQL com Docker
   $ cd petadote/backend/demo
   $ docker-compose up -d
 
 #Opção 2:
-  # Configurar o arquivo application.properties
+  # Garantir que o PostgreSQL está em execução e configurar o arquivo application.properties
   spring.datasource.url=jdbc:postgresql://localhost:5432/NOME_BANCO_DE_DADOS
   spring.datasource.username=USERNAME_POSTGRES
   spring.datasource.password=SENHA_POSTGRES
