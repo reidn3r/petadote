@@ -19,12 +19,13 @@ import com.example.demo.services.DoadorService;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
+@CrossOrigin(origins = {"http://localhost:5173/", "http://localhost:5173/cadastro"})
 @RestController
 @RequestMapping("/api")
 public class PetAdoteController {
