@@ -41,7 +41,7 @@ function Identificacao({ handleChangeField, animal }: IdentificacaoProps) {
         <Input
           label="Raça"
           nome="raca"
-          value={animal?.raca}
+          value={animal?.raca || animal?.tipoAnimal?.raca}
           placeholder="Raça do animal"
           onChange={(event) => handleChangeField(event, "raca")}
         />
@@ -70,7 +70,7 @@ function Identificacao({ handleChangeField, animal }: IdentificacaoProps) {
         <Select
           label="Tipo"
           nome="tipo"
-          value={animal?.tipo}
+          value={animal?.tipo || animal?.tipoAnimal?.tipo}
           placeholder="Ex: Cachorro"
           opcoes={opcoesTipoAnimal}
           onChange={(event) => handleChangeField(event, "tipo")}

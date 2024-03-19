@@ -134,6 +134,7 @@ public class AnimalService {
         foundAnimal.setCor(data.cor());
         foundAnimal.setSexo(data.sexo());
         foundAnimal.setIdade(data.idade());
+        foundAnimal.setDescricao(data.descricao());
 
         TipoAnimalEntity currentTipoAnimal = foundAnimal.getTipoAnimal();
         if(currentTipoAnimal == null){
@@ -143,6 +144,7 @@ public class AnimalService {
         else{
             currentTipoAnimal.setRaca(data.raca());
             currentTipoAnimal.setTipo(data.tipo());
+            
         }
 
         animalRepository.save(foundAnimal);

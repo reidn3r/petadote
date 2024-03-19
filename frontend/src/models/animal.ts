@@ -12,17 +12,17 @@ export enum AnimalSexo {
 }
 
 export interface tipoAnimal {
-  id: number,
-  tipo: string,
-  raca: string
+  id: number;
+  tipo: AnimalTipo;
+  raca: string;
 }
 
 export interface doador {
-  id: number,
-  nome: string,
-  cpf: string,
-  email: string,
-  telefone: string
+  id: number;
+  nome: string;
+  cpf: string;
+  email: string;
+  telefone: string;
 }
 
 export interface Animal {
@@ -35,5 +35,5 @@ export interface Animal {
   raca: string;
   descricao: string;
   tipoAnimal: tipoAnimal;
-  doador: doador
+  doador: doador;
 }

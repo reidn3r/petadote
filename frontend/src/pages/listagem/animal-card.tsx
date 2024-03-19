@@ -86,7 +86,10 @@ function AnimalCard({
       <li className="font-poppins text-lg list-inside">
         {animal.idade} {animal.idade > 1 ? "anos" : "ano"}
       </li>
-      <AnimalIcon tipo={animal.tipo} className="absolute bottom-2 end-3" />
+      <AnimalIcon
+        tipo={animal.tipoAnimal.tipo}
+        className="absolute bottom-2 end-3"
+      />
       <ModalEdicao open={openEdit} handler={handleOpenEdit} animal={animal} />
       <ModalExclusao
         open={openDelete}

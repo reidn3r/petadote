@@ -9,6 +9,8 @@ import { Check } from "lucide-react";
 import { Animal } from "../../models/animal";
 import Identificacao from "../cadastro/identificacao";
 import { ChangeEvent, useEffect, useState } from "react";
+import axios from "axios";
+import { baseURL } from "../../config";
 
 interface ModalEdicaoProps {
   open: boolean;
@@ -19,8 +21,18 @@ interface ModalEdicaoProps {
 function ModalEdicao({ open, handler, animal }: ModalEdicaoProps) {
   const [animalValues, setAnimalValues] = useState<Partial<Animal>>();
 
-  const submitForm = () => {
-    console.log({ animalValues }); // POST para o ID do animal
+  const submitForm = async () => {
+    const formattedAnimal = {
+      id: animal?.id,
+      nome: animalValues?.nome,
+      tipo: animalValues?.tipoAnimal?.tipo,
+      sexo: animalValues?.sexo,
+      raca: animalValues?.tipoAnimal?.raca,
+      cor: animalValues?.cor,
+      idade: animalValues?.idade,
+      descricao: animalValues?.descricao,
+    };
+    await axios.put(`${baseURL}api/update/animal`, formattedAnimal);
     handler();
   };
 
