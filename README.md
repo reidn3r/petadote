@@ -9,13 +9,12 @@ Frontend:
   - React.js
   - Tailwind
   - Axios
-  - ?
 
 Backend:
   - Java 17
   - SpringBoot
   - PostgreSQL
-  - ?
+
 <hr>
 
 Requisitos:
