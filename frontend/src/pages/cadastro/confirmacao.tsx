@@ -7,6 +7,8 @@ interface ConfirmacaoProps {
 }
 
 function Confirmacao({ animal, doador }: ConfirmacaoProps) {
+  console.log(animal);
+  // console.log(animal);
   return (
     <div className="flex flex-col gap-3">
       <div>
@@ -19,7 +21,7 @@ function Confirmacao({ animal, doador }: ConfirmacaoProps) {
 
           <div>
             <b className="font-poppins font-semibold text-base">Raça</b>
-            <p className="font-poppins">{animal?.raca || "Não informado"}</p>
+            <p className="font-poppins">{animal?.tipoAnimal?.raca || "Não informado"}</p>
           </div>
 
           <div>
@@ -39,7 +41,7 @@ function Confirmacao({ animal, doador }: ConfirmacaoProps) {
 
           <div>
             <b className="font-poppins font-semibold text-base">Tipo</b>
-            <p className="font-poppins">{animal?.tipo || "Não informado"}</p>
+            <p className="font-poppins">{animal?.tipoAnimal?.tipo || "Não informado"}</p>
           </div>
         </div>
         <div>
@@ -54,21 +56,21 @@ function Confirmacao({ animal, doador }: ConfirmacaoProps) {
             <b className="font-poppins font-semibold text-base">
               Nome do(a) doador(a)
             </b>
-            <p className="font-poppins">{doador?.nome || "Não informado"}</p>
+            <p className="font-poppins">{animal?.doador?.nome || "Não informado"}</p>
           </div>
           <div>
             <b className="font-poppins font-semibold text-base">CPF</b>
-            <p className="font-poppins">{doador?.cpf || "Não informado"}</p>
+            <p className="font-poppins">{animal?.doador?.cpf || "Não informado"}</p>
           </div>
           <div>
             <b className="font-poppins font-semibold text-base">Telefone</b>
             <p className="font-poppins">
-              {doador?.telefone || "Não informado"}
+              {animal?.doador?.telefone || "Não informado"}
             </p>
           </div>
           <div>
             <b className="font-poppins font-semibold text-base">E-mail</b>
-            <p className="font-poppins">{doador?.email || "Não informado"}</p>
+            <p className="font-poppins">{animal?.doador?.email || "Não informado"}</p>
           </div>
         </div>
       </div>
