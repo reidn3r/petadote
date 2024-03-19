@@ -6,13 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.CreateAnimalDoadorDTO;import com.example.demo.entities.AnimalEntity;
+import com.example.demo.dto.CreateAnimalDoadorDTO;
+import com.example.demo.dto.EditAnimalDTO;
+import com.example.demo.entities.AnimalEntity;
 import com.example.demo.entities.DoadorEntity;
 import com.example.demo.entities.TipoAnimalEntity;
 import com.example.demo.repository.AnimalRepository;
 
 import jakarta.transaction.Transactional;
-import lombok.NonNull;
 
 @Service
 public class AnimalService {
@@ -122,5 +123,29 @@ public class AnimalService {
 
     public void deleteAnimalById(Optional<AnimalEntity> animal){
         animalRepository.delete(animal.get());
+    }
+
+    @Transactional
+    public Optional<AnimalEntity> updateAnimal(EditAnimalDTO data) throws Exception{
+        Optional<AnimalEntity> foundAnimalById = animalRepository.findById(data.id());
+        if(foundAnimalById.isEmpty()) throw new Exception("Animal nao encontrado");
+        AnimalEntity foundAnimal = foundAnimalById.get();
+        foundAnimal.setNome(data.nome());
+        foundAnimal.setCor(data.cor());
+        foundAnimal.setSexo(data.sexo());
+        foundAnimal.setIdade(data.idade());
+
+        TipoAnimalEntity currentTipoAnimal = foundAnimal.getTipoAnimal();
+        if(currentTipoAnimal == null){
+            TipoAnimalEntity newTipoAnimal = new TipoAnimalEntity(data.raca(), data.tipo());
+            foundAnimal.setTipoAnimal(newTipoAnimal);
+        }
+        else{
+            currentTipoAnimal.setRaca(data.raca());
+            currentTipoAnimal.setTipo(data.tipo());
+        }
+
+        animalRepository.save(foundAnimal);
+        return Optional.of(foundAnimal);
     }
 }

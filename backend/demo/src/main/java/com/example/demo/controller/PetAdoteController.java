@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.AdoptAnimalDTO;
 import com.example.demo.dto.CreateAnimalDoadorDTO;
+import com.example.demo.dto.EditAnimalDTO;
 import com.example.demo.entities.AnimalEntity;
 import com.example.demo.entities.DoadorEntity;
 import com.example.demo.services.AnimalService;
@@ -71,6 +73,13 @@ public class PetAdoteController {
             return ResponseEntity.status(HttpStatus.OK).body(adoptedAnimal);
         }
     }
+
+    @PutMapping("/update/animal")
+    public ResponseEntity<Object> updateAnimal(@RequestBody @Valid EditAnimalDTO data) throws Exception{
+        Optional<AnimalEntity> updatedAnimal = this.animalService.updateAnimal(data);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedAnimal);
+
+    }
     
     @DeleteMapping("/delete/animal")
     public ResponseEntity<Object> deleteAnimal(@RequestBody @Valid AdoptAnimalDTO data) throws Exception{
@@ -82,7 +91,5 @@ public class PetAdoteController {
             animalService.deleteAnimalById(foundAnimal);
             return ResponseEntity.ok().body(foundAnimal);
         }
-        
     }
-    
 }
